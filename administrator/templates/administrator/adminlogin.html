@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN - LOGIN</title>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        preventBack()
+        window.onunload = function () { null };
+    </script>
+    <!-- CSS only -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+    <section class="vh-80 gradient-custom">
+        <div class="container py-5 h-50">
+            <div class="row d-flex justify-content-center align-items-center h-50">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;height:550px">
+                        <div class="card-body p-5 text-center">
+
+                            <div class="mb-md-5 mt-md-4 pb-5">
+
+                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                                <form action="{% url 'adminlogin' %}" method="POST">
+                                    {% csrf_token %}
+                                    <p class="text-white-50 mb-5">Please enter your login and password!</p>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="email" class="form-control form-control-lg" name="email" />
+                                        <label class="form-label">Email</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="password" class="form-control form-control-lg" name="password" />
+                                        <label class="form-label">Password</label>
+                                    </div>
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                                    </div>
+                                </form>
+                                <div>
+                                    {% for message in messages %}
+                                    <h3>{{ message }}</h3>
+                                    {% endfor %}
+                                </div>
+                               
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

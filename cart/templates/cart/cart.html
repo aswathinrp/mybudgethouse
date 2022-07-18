@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid mt-5 pt-5">
+
+
+  <!-- Page Header Start -->
+  <div class="container-fluid bg-success mt-5 pt-5 mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100px">
+      <h1 class="font-weight-semi-bold text-uppercase mb-3" style="color:white;">Shopping Cart</h1>
+      <div class="d-inline-flex">
+        <p class="m-0"><a href="">Home</a></p>
+        <p class="m-0 px-2">-</p>
+        <p class="m-0">Shopping Cart</p>
+      </div>
+    </div>
+  </div>
+  <!-- Page Header End -->
+
+
+  <!-- Cart Start -->
+
+  <div class="container-fluid pt-5">
+    {% if not cart_items %}
+    <h2 class="text-center">Your Shopping Cart is Empty</h2>
+    <br>
+    <div class="text-center">
+      <a href="{% url 'stocks' %}" class="btn btn-success">Continue Shopping</a>
+    </div>
+    {% else %}
+    <div class="row px-xl-5">
+      <div class="col-lg-8 table-responsive mb-5">
+        <table class="table table-bordered text-center mb-0">
+          <thead class="bg-success text-light">
+            <tr>
+              <th>Products</th>
+              <th>price</th>
+              <th>remove</th>
+            </tr>
+          </thead>
+          <tbody class="align-middle">
+            {% for cart_item in cart_items %}
+            <tr>
+              <td class="align-middle"><img src="{{cart_item.product.images.url}}" alt="" style="width: 100px;">
+                {{cart_item.product.product_name}}</td>
+              <td class="align-middle">₹{{cart_item.product.price}}</td>
+
+              <td class="align-middle"><a href="{% url 'remove_cart' cart_item.product.id cart_item.id %}">
+                <i class="fa fa-times"></i></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-4">
+        <div class="card border-secondary mb-5">
+          <div class="card-header bg-success border-0">
+            <h4 class="font-weight-semi-bold text-light m-0">Cart Summary</h4>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-3 pt-1">
+              <h6 class="font-weight-medium">Subtotal</h6>
+              <h6 class="font-weight-medium">₹{{total}}</h6>
+            </div>
+            <div class="d-flex justify-content-between">
+              <h6 class="font-weight-medium">Tax</h6>
+              <h6 class="font-weight-medium">₹{{tax}}</h6>
+            </div>
+          </div>
+          <div class="card-footer border-secondary bg-transparent">
+            <div class="d-flex justify-content-between mt-2">
+              <h5 class="font-weight-bold">Grand_total</h5>
+              <h5 class="font-weight-bold">₹{{grand_total}}</h5>
+            </div>
+            <a class="btn  btn-success " href="{% url 'checkout' %}">Proceed To Checkout</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+
+
+  {% endblock %}

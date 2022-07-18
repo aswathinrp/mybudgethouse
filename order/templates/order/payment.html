@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+
+    <div class="row align-items-center py-3 px-xl-5">
+
+        <div class="col-lg-6 col-6 text-left">
+            <form action="">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for products">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-transparent text-primary">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3 col-6 text-right">
+            <a href="" class="btn border">
+                <i class="fa fa-heart text-primary"></i>
+                <span class="badge">0</span>
+            </a>
+            <a href="" class="btn border">
+                <i class="fa fa-shopping-cart text-primary"></i>
+                <span class="badge">0</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
+
+
+<!-- Navbar Start -->
+<div class="container-fluid">
+    <div class="row border-top px-xl-5">
+        </nav>
+    </div>
+    <div class="col-lg-9">
+        <nav class="navbar navbar-expand-lg bg-success navbar-light py-3 py-lg-0 px-0">
+
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav mr-auto py-0">
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="shop.html" class="nav-item nav-link">Shop</a>
+                    <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                            <a href="checkout.html" class="dropdown-item">Checkout</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+</div>
+</div>
+<!-- Navbar End -->
+
+
+<!-- Page Header Start -->
+<div class="container-fluid bg-success mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3 text-light">Shopping Cart</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="">Home</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">Shopping Cart</p>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Cart Start -->
+
+<div class="row">
+    <aside class="col-lg-8">
+        <div class="card ">
+            <h4 class="card-header" style="background-color:#80ff59;">
+                Billing Address</h4>
+
+            <div class="card-body" style="background-color:#cafabb;">
+                <p class="card-text" style="color:black;">{{ order.full_name}}</p>
+                <p class="card-text">{{ order.full_address}}</p>
+                <p class="card-text">{{ order.phone}}</p>
+                <p class="card-text">{{ order.email}}</p>
+                {% if order.order_note %}
+                <b>order note:</b> {{order.order_note}}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background-color:#80ff59;">
+                <h4 class="text-bold"> Payment Method</h4>
+            </div>
+            <div class="card-body">
+                <div class="form_container" style="background-color:#cafabb;">
+                    <p class="card-title">RazorPay</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" style="background-color:#80ff59;">
+                <h4 class="text-bold"> Review Products</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered text-center mb-0">
+                    <thead class="text-dark" style="background-color:#80ff59;">
+                        <tr>
+                            <th>Products</th>
+                            <th>Price</th>
+                            <th>remove</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle" style="background-color:#cafabb;">
+                        {% for cart_item in cart_items %}
+                        <tr>
+                            <td class="align-middle"><img src="{{cart_item.product.images.url}}" alt=""
+                                    style="width: 100px;">
+                                {{cart_item.product.product_name}}</td>
+                            <td class="align-middle">₹{{cart_item.product.price}}</td>
+
+
+                            <td class="align-middle"><a
+                                    href="{% url 'remove_cart' cart_item.product.id cart_item.id %}"><i
+                                        class="fa fa-times"></i></a></td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </aside>
+
+
+    <aside class="col-lg-4">
+        <div class="card">
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-success border-0">
+                    <h4 class="font-weight-semi-bold m-0" style="color:white;">Cart Summary</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-3 pt-1">
+                        <h6 class="font-weight-medium">Subtotal</h6>
+                        <h6 class="font-weight-medium">₹{{total}}</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Tax</h6>
+                        <h6 class="font-weight-medium">₹{{tax}}</h6>
+                    </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5 class="font-weight-bold">Amount </h5>
+                        <h5 class="font-weight-bold"> RS.{{grand_total}}</h5>
+                    </div>
+                    <div>
+                        <form class="text-center border border-light p-5" actiom="successs.html" method="POST">
+                            {% csrf_token %}
+
+                            <div class="form_container">
+
+                                <button id="rzp-button1" >Pay</button>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </aside>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    var csrftoken = getCookie('csrftoken');
+    var url = "{% url 'payment' %}"
+    var orderID = "{{order.order_number}}"
+    var payment_method = "Razorpay"
+    var amount_paid = "{{order.order_total}}"
+    var status = "success"
+    var redirect_url = "{% url 'order_complete' %}"
+
+    var options = {
+        "key": "rzp_test_D2kTxkbeGLQVTC", // Enter the Key ID generated from the Dashboard
+        "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        "name": "Ecom",
+        "description": "Test Transaction",
+        "image": "https://example.com/your_logo",
+        "order_id": "{{payment.order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "handler": function (response) {
+            sendData();
+            function sendData() {
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                        "X-CSRFToken": csrftoken,
+                    },
+                    body: JSON.stringify({
+                        order_id: orderID,
+                        razorpay_payment_id: response.razorpay_payment_id,
+                        razorpay_order_id: response.razorpay_order_id,
+                        razorpay_signature: response.razorpay_signature,
+                        payment_method: payment_method,
+                        amount_paid: amount_paid,
+                        status: status,
+                    }),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        window.location.href = redirect_url + '?order_number=' + data.order_number + '&payment_id=' + data.transID;
+                    });
+            }
+
+        },
+        "prefill": {
+            "name": "Aswathi",
+            "email": "aswathinrp@example.com",
+            "contact": "9999999999"
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response) {
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+    });
+    document.getElementById('rzp-button1').onclick = function (e) {
+        rzp1.open();
+        e.preventDefault();
+    }
+</script>
+
+
+{% endblock %}

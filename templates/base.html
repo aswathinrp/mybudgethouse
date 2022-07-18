@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MY BUDGET HOUSE</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+  <script>
+      $(document).ready(function()
+      {
+          var ordertotal;
+          var total_revenue=0;
+          $('td:nth-child(4)').each(function()
+          {
+            ordertotal= $(this).html();
+            total_revenue += parseInt(ordertotal)
+            $('total_revenue').text(total_revenue) 
+          });
+      });
+
+
+    </script>
+
+  <script type="text/javascript">
+    // jquery ready start
+    $(document).ready(function () {
+      // jQuery code
+
+    });
+// jquery end
+  </script>
+
+</head>
+
+<body>
+
+  <div class="click-closed"></div>
+  <!--/ Form Search Star /-->
+  <div class="box-collapse">
+    <div class="title-box-d">
+      <h3 class="title-d">Search Property</h3>
+    </div>
+    <span class="close-box-collapse right-boxed ion-ios-close"></span>
+    <div class="box-collapse-wrap form">
+      <form class="search" action="{% url 'search' %}" method="POST" name="keyword">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="Type">Bedrooms</label>
+              <select class="form-control form-control-lg form-control-a" name="bedrooms">
+                <!-- <option>All </option> -->
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="city">Bathrooms</label>
+              <select class="form-control form-control-lg form-control-a" name="bathrooms">
+                
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="garages">Floors</label>
+              <select class="form-control form-control-lg form-control-a" name="floors">
+               
+                <option>1</option>
+                <option>2</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="bathrooms">Parking</label>
+              <select class="form-control form-control-lg form-control-a" name="parking">
+                <option>Available</option>
+                <option>Not Available</option>
+              </select>
+            </div>
+          </div>
+          <hr/>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success" value="search/">Search Property</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--/ Form Search End /-->
+
+  <!--/ Nav Star /-->
+  <nav class="navbar navbar-default navbar-trans navbar-expand-md fixed-top height=40px">
+    <div class="container">
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="navbar-brand text-brand" href="{% url 'index' %}"> <img src="{% static 'img/homelogo.jpg' %}"
+          alt="">MY<span class="color-b">BUDGETHOUSE</span></a>
+
+      <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'stocks' %}">Plans</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <a class="btn btn-success" href="{% url 'cart' %}" type="button" style="color:#fff;width:45px;height:45px;">
+        <i class="fa fa-shopping-cart"></i><span class="badge badge-pill badge-danger notify">{{ cart_count}}</span></a></p>
+      </button>
+      {% if user.is_authenticated %}
+      <button class="btn btn-success m-1" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}" type="button" style="color:#fff;"><span
+            class="fa fa-heart" aria-hidden="true"></span></a></p>
+      </button>
+      {% else %}
+      <button class="btn btn-b-n m-2 disabled "><i class="fa fa-heart"></i></button">
+        {% endif %}
+        <button class="btn btn-success navbar-toggle-box-collapse d-none d-md-block m-1" style="width:45px;height:45px;"><a href="#" type="button"
+            style="color:#fff;"><span class="fa fa-search" aria-hidden="true"></span></a></p>
+        </button>
+        {% if user.id is None %}
+        <button class="btn btn-success m-1"style="width:45px;height:45px;"><a href="{% url 'login' %}" type="button" style="color:#fff;"><span
+              class="fa fa-user" aria-hidden="true"></span></a></p>
+        </button>
+        {% else %}
+        <button class="btn btn-success  m-1" style="width:45px;height:45px;"><a href="{% url 'userdashboard' %}" type="button" style="color:#fff;"><span
+          class="fa fa-user" aria-hidden="true"></span></a></p>
+        </button>
+        <div>
+          <button class="btn btn-success m-1" type="button"><a href="{% url 'logout' %}" type="button"
+              style="color:#fff; width:50px;height:10px;">Logout</a>
+          </button>
+        </div> 
+        <div>
+          <p class="text mt-3">{{user.first_name}}</p>
+        </div>
+    </div>
+
+
+    {% endif %}
+
+   
+  </nav>
+  {% block content %}
+
+
+  {% endblock %}
+<div class="container">
+  <section class="section-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <div class="widget-a">
+            <div class="w-header-a">
+              <h3 class="w-title-a text-brand">MYBudgetHouse</h3>
+            </div>
+            <div class="w-body-a">
+              <p class="w-text-a color-text-a">
+
+              </p>
+            </div>
+            <div class="w-footer-a">
+              <ul class="list-unstyled">
+                <li class="color-a">
+                  <span class="color-text-a">Email</span> aswathinrp@gmail.com
+                </li>
+                <li class="color-a">
+                  <span class="color-text-a">Phone</span> +91 8089319891
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4 section-md-t3">
+          <div class="widget-a">
+            <div class="w-header-a">
+              <h3 class="w-title-a text-brand">The Home</h3>
+            </div>
+            <div class="w-body-a">
+              <div class="w-body-a">
+                <ul class="list-unstyled">
+                  <li class="item-list-a">
+                    <i class="fa fa-angle-right"></i> <a href="#">Site Map</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="fa fa-angle-right"></i> <a href="#">Legal</a>
+                  </li>
+
+                  <li class="item-list-a">
+                    <i class="fa fa-angle-right"></i> <a href="#">Privacy Policy</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4 section-md-t3">
+          <div class="widget-a">
+            <div class="w-header-a">
+              <h3 class="w-title-a text-brand">what we do</h3>
+            </div>
+            <div class="w-body-a">
+              <div class="w-body-a">
+                <ul class="list-unstyled">
+                  <li class="item-list-a">
+                    <i class="fa fa-angle-right"></i> <a href="#">Site plan</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="fa fa-angle-right"></i> <a href="#">Custom plan</a>
+                  </li>
+
+                  <li class="item-list-a">
+                    <i class="fa fa-angle-right"></i> <a href="#">Construction</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+<div class="container"> 
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="nav-footer">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="about.html">About</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Property</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="socials-a">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-dribbble" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="copyright-footer">
+            <p class="copyright color-text-a">
+              &copy; Copyright
+              <span class="color-a">MYBudgetHouse</span> All Rights Reserved.
+            </p>
+          </div>
+          <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
+            -->
+            <p>Designed by aswathinrp</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </div>
+  <!--/ Footer End /-->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <div id="preloader"></div>
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'lib/popper/popper.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'lib/scrollreveal/scrollreveal.min.js' %}"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

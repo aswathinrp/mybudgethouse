@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Page Header Start -->
+<div class="container-fluid bg-secondary mb-5">
+  <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100px">
+    <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
+    <div class="d-inline-flex">
+      <p class="m-0"><a href="">Home</a></p>
+      <p class="m-0 px-2">-</p>
+      <p class="m-0">Shopping Cart</p>
+    </div>
+  </div>
+</div>
+<!-- Page Header End -->
+
+<div class="container d-flex ">
+  <div class="col-lg-8">
+    <div class="row">
+      <form action="{% url 'placeorder' %}" method="POST">
+        {% csrf_token %}
+        <div class="col-lg-8">
+          <table class="table table-bordered text-center my-5" style="width: 50vw;">
+            <thead class="bg-success text-light">
+              <tr>
+                <th>Products</th>
+                <th>Price</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody class="align-middle">
+              {% for cart_item in cart_items %}
+              <tr>
+                <td class="align-middle"><img src="{{cart_item.product.images.url}}" alt=""
+                    style="width: 200px; height:200px;">
+                  {{cart_item.product.product_name}}</td>
+                <td class="align-middle">₹{{cart_item.product.price}}</td>
+                <td class="align-middle"><a href="{% url 'remove_cart' cart_item.product.id cart_item.id %}"><i
+                      class="fa fa-times"></i></a></td>
+              </tr>
+
+              {% endfor %}
+
+            </tbody>
+          </table>
+
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-4 d-flex">
+    <div class="card border-secondary">
+      <div class="card-header bg-success border-0">
+        <h4 class="font-weight-semi-bold m-0 text-white">Cart Summary</h4>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between ">
+          <h6 class="font-weight-medium">Subtotal</h6>
+          <h6 class="font-weight-medium"> ₹{{total}}</h6>
+        </div>
+        <div class="d-flex justify-content-between">
+          <h6 class="font-weight-medium">Tax</h6>
+          <h6 class="font-weight-medium">₹{{tax}}</h6>
+        </div>
+      </div>
+      <div class="card-footer border-secondary bg-transparent">
+        <div class="d-flex justify-content-between">
+          <h5 class="font-weight-bold">Grand Total</h5>
+          <h5 class="font-weight-bold">&nbsp ₹{{grand_total}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <aside class="col-lg-12">
+      <h4 class="card-title mb-4">Billing Address</h4>
+      
+<form>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">FirstName<span class="text-danger">*</span></label>
+          <input type="text" name="first_name" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">LastName<span class="text-danger">*</span></label>
+          <input type="text" name="last_name" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">Email<span class="text-danger">*</span></label>
+          <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Phone<span class="text-danger">*</span></label>
+          <input type="text" name="phone" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">Address Line 1<span class="text-danger">*</span></label>
+          <input type="text" name="address_line1" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Address Line 2</label>
+          <input type="text" name="address_line2" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">city<span class="text-danger">*</span></label>
+          <input type="text" name="city" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">state<span class="text-danger">*</span></label>
+          <input type="text" name="state" class="form-control">
+        </div>
+        <div class="col form-group">
+          <label for="">Country</label>
+          <input type="text" name="country" class="form-control">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="">Order Note</label>
+        <textarea name="order_note" rows="2" class="form-control"></textarea>
+
+      </div>
+      <button class="btn mt-3  btn-success" type="submit" href="{% url 'placeorder' %}">Place Order</button>
+      <p class="text-bold mt-3">NOTE: CANCELLATION is not Available</p>
+      </form>
+    </aside>
+  </div>
+</div>
+
+</div>
+{% endblock %}

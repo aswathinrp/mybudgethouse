@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+<header class="section-header m-5 p-5">
+
+    <section class="header-main border-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="./" class="brand-wrap">
+                        <img class="logo" src="{% static 'images/Capture.JPG' %}">
+                    </a> <!-- brand-wrap.// -->
+                </div>
+
+            </div>
+            <!-- <a href="./store.html" class="btn btn-outline-primary">Store</a> -->
+            <div class="col-lg  col-md-6 col-sm-12 col">
+
+            </div> <!-- col.// -->
+            <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3 mt-5">
+                <div class="d-flex justify-content-end mb-3 mb-lg-0">
+                    <div class="widget-header">
+                        <small class="title text-muted">Welcome {{user.first_name}}</small>
+
+                    </div>
+                    <!-- <a href="./cart.html" class="widget-header pl-3 ml-3">
+						<div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div> -->
+                    <!-- <span class="badge badge-pill badge-danger notify">0</span> -->
+                    <!-- </a> -->
+                </div> <!-- widgets-wrap.// -->
+            </div> <!-- col.// -->
+        </div> <!-- row.// -->
+        </div> <!-- container.// -->
+    </section> <!-- header-main .// -->
+
+
+
+</header> <!-- section-header.// -->
+
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-3">
+                <!--   SIDEBAR   -->
+                <ul class="list-group">
+                    <a class="list-group-item {% if '/accounts/' == request.path %} active {% endif %}"
+                        href="{% url 'userdashboard' %}"> Dashboard </a>
+                    <a class="list-group-item {% if '/myorders/' in request.path %} active {% endif %}"
+                        href="{% url 'myorders' %}"> My orders </a>
+                    <a class="list-group-item {% if '/edit_profile/' in request.path %} active {% endif %}"
+                        href="{% url 'edit_profile' %}"> edit profile</a>
+                    <a class="list-group-item" href="{% url 'change_password' %}"> Change password</a>
+                    
+                    <!-- <a class="list-group-item" href="#"> My Selling Items </a> -->
+                    <!-- <a class="list-group-item" href="#"> Received orders </a> -->
+                </ul>
+                <br>
+                <a class="btn btn-light btn-block" href="{% url 'logout' %}" type="button"> <i
+                        class="fa fa-power-off"></i> <span class="text">Log out</span> </a>
+
+                <!--   SIDEBAR .//END   -->
+            </aside>
+            <main class="col-md-9">
+
+
+                <!-- <div class="card-body"> -->
+                <!-- <div class="row">  -->
+                <div class="col-md-12  p-1 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Edit Your Profile</h5>
+                            <h4>{{orders_count}}</h4>
+                            <!-- <a href ="#">View Orders</a> -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="text-right">
+                        {% if userprofile.profile_pic %}
+                        <img src="{{userprofile.profile_pic.url}}" alt="profile pic" width="100" style="border-radius:50px;">
+                        {% else %}
+                        <img src="" alt="profile pic" width="100" style="border-radius:50px;">
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>First_Name</label>
+                                       {{user_form.first_name}}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Last_Name</label>
+                                        {{user_form.last_name}}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>email</label>
+                                       {{user_form.email}}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>phone number</label>
+                                       {{profile_form.phone_number}}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Profile picture</label>
+                                        {{profile_form.profile_pic}}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>city</label>
+                                        {{profile_form.city}}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>state</label>
+                                       {{profile_form.state}}
+                                    </div>
+                                    </div>
+                                    <input type="submit" value="save" class="btn btn-success ">
+                            </form>
+
+</div>
+</div>
+</div>
+
+                        </div>
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}

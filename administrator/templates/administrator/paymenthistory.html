@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y mt-5 pt-5">
+
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <main class="col-md-8">
+                <div class="col-md-10 p-1 mb-3">
+                    <aside>
+                        <div class="container-fluid mb-2">
+                            <h2 class="title text-bold"
+                                style="text-align:right;color: darkgreen;text-decoration-line: underline;">PAYMENT
+                                HISTORY
+                            </h2>
+                            <!-- <div class="card">
+                                <h2 class="title text-bold"
+                                style="text-align:left;color: darkgreen;text-decoration-line: underline;">TOTAL REVENUE : {{orders.revenue}}
+                            </h2> -->
+                        </div>
+
+                    </aside>
+                </div>
+
+        </div>
+        <div class="search-box flex-grow-1  mb-4">
+            <form class="d-flex flex"  action="{% url 'stock_table' %}" method="get">
+                <input type="search" name="key" class="form-control  " placeholder="Search&hellip;">
+                <button type="submit" class="mx-2 btn btn-success">Search</button>
+            </form>
+
+        </div>
+
+        <div class="container-fluid bordered container-fluid " style="background: #cfffdb;">
+            <table class="table">
+                <thead  class="title"style="background:#083312;color:white;font-size:13px;">
+
+                    <tr>
+                        <th>Client</th>
+                        
+                        <th>Payment id</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody class="data" style="font-size:14px;">
+                    {% for result in paid %}
+                    <tr>
+                        <td>{{result.user}}</td>
+                        
+                        <td>{{result.payment_id}}</td>
+                        <td>Rs.{{result.amount_paid}}</td>
+                        <td>{{result.status}}</td>
+                        <td>{{result.created_at}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+
+                    
+                </tbody>
+            </table>
+            <!-- order-group.// -->
+            </main>
+        </div> <!-- row.// -->
+    </div>
+
+    </div>
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Information</title>
+</head>
+
+<body>
+  <h1>Information</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <table class="table table-striped">
+          <thead>
+
+            <tr>
+              <th style="width:100px;">product_name</th>
+              <th style="width:100px;">max_area</th>
+              <th style="width:100px;">bedrooms</th>
+              <th style="width:100px;">bathrooms</th>
+              <th style="width:80px;">floors</th>
+              <th style="width:140px;">parking</th>
+              <th style="width:80px;">price</th>
+              <th style="width:140px;">images</th>
+              <th style="width:80px;">category</th>
+              <th style="width:140px;">created_date</th>
+             
+
+            </tr>
+          </thead>
+          <tbody>
+
+             {% for item in ordered_products %}
+            <tr>
+            
+              <td>{{item.product.product_name}}</td>
+              <td>{{item.product.max_area}}</td>
+              <td>{{item.product.bedrooms}}</td>
+              <td>{{item.product.bathrooms}}</td>
+              <td>{{item.product.floors}}</td>
+              <td>{{item.product.parking}}</td>
+              <td> ₹{{item.product.price}}</td>
+              <td><img src="{{item.product.images.url}}" style="height:200px;"> </td>
+              <td>{{item.product.category}}</td>
+              <td>{{item.product.created_date}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <a class="btn btn-success" href="{% url 'pdf_report' %}">Create PDF </a>
+  </div>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="py">
+    <div class="container">
+        <a class="text-dark" href="{% url 'wishlist' %}">WISHLIST</a>
+        <a class="text-dark" href="{% url 'index' %}">HOME</a>
+        </div>
+        </div>
+        <div class="container-fluid pt-5 mt-5">
+            <div class="row px-xl-5">
+              <div class="col-lg-8 table-responsive mb-5">
+                <table class="table table-bordered text-center mb-0">
+                  <thead class="bg-success text-light">
+                    <tr>
+                      <th>Products</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                      <th>Remove</th>
+                    </tr>
+                  </thead>
+                  <tbody class="align-middle">
+                    {% for x in product %}
+                    <tr>
+                      <td class="align-middle"><img src="{{x.product.images.url}}" alt="" style="width: 100px;">
+                        {{x.product.product_name}}</td>
+                      <td class="align-middle">{{x.product.price}}</td>
+                      <td class="align-middle"></td>
+                      <td class="align-middle">
+                       <i class="fa fa-times"><a href="{% url 'wishlist_remove' x.id %}">remove</a></i>
+                     </tr>
+                    {% endfor %}
+                   
+                  </tbody>
+                </table>
+              </div>
+
+{% endblock %}
