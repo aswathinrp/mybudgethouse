@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'cart',
     'order',
     'crispy_forms',
+    'storages',
   
     
     
@@ -148,7 +149,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 
