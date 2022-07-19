@@ -1,7 +1,7 @@
 
 
 from multiprocessing import context
-from tkinter.tix import Select
+
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from stocks.models import Wishlist, products
