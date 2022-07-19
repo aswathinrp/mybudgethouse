@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+from configparser import NoSectionError
 import os
 from django.contrib.messages import constants as messages
 from pathlib import Path
@@ -150,6 +151,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = 'AKIAY3R6X3ZGV5ML55NB'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'mybudgethouse-bucket'
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = True
+AWS_DEFAULT_ACL = None 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 
