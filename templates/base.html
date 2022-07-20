@@ -158,7 +158,7 @@
         </div>
   
         <a class="btn btn-success" href="{% url 'cart' %}" type="button" style="color:#fff;width:45px;height:45px;">
-          <i class="fas fa-shopping-cart"></i><span class="badge badge-pill badge-danger notify">{{ cart_count}}</span></a></p>
+          <i class="far fa-shopping-cart"><span class="badge badge-pill badge-danger notify">{{ cart_count}}</span></i></a></p>
         </button>
         {% if user.is_authenticated %}
         <button class="btn btn-success m-1" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}" type="button" style="color:#fff;"><span
