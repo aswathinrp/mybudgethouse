@@ -19,5 +19,6 @@ urlpatterns = [
   path('payment',views.payment,name='payment'),
   path('order_complete',views.order_complete,name='order_complete'),
   path('successs',views.successs,name='successs'),
- 
+  path('adduser/',views.adduser,name='adduser'),
+  
 ]

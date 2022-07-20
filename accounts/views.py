@@ -352,3 +352,43 @@ def userdashboard(request):
         'orders_count': orders_count,
     }
     return render(request,'accounts/userdashboard.html',context)
+def adduser(request):
+    if request.method == "POST":
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            username = email.split("@")[0]
+
+            user = Accounts.objects.create_user(
+                first_name=first_name, last_name=last_name, email=email, password=password, username=username)
+
+            user.save()
+
+            current_site = get_current_site(request)
+            mail_subject = 'please activate your account'
+            message = render_to_string('email_verification.html', {
+                'user': user,
+                'domain': current_site,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
+
+
+            })
+            to_email = email
+            send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email.send()
+
+            messages.success(request, 'Registration successfull')
+            return redirect('clients')
+    else:
+
+        form = RegistrationForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'administrator/adduser.html', context)
+
+

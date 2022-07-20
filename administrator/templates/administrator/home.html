@@ -158,8 +158,34 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <div class="page-header-toolbar">
-                  
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">USERS</h5><span class ="card">{{user.count}}</span>
+                        <p class="card-text">Registered users in mybudgethouse </p>
+                        <a href="{% url 'clients' %}" class="btn btn-primary">SEE</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title"> <Obj>ORDERS</Obj></h5><span class ="card">{{user.count}}</span>
+                        <p class="card-text">Total order : {{Order.count}} </p>
+                        <a href="{% url 'orderhistory' %}" class="btn btn-primary">SEE</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Total REVENUE</h5>
+                        <p class="card-text">Total revenue till now</p>
+                        <a href="#" class="btn btn-primary">SEE</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
