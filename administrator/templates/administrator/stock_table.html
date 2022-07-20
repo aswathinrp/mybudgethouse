@@ -135,6 +135,9 @@
                                 <input type="search" name="key" class="form-control  " placeholder="Search&hellip;">
                                 <button type="submit" class="mx-2 btn btn-success">Search</button>
                             </form>
+                            <div>
+                                <a href="{% url 'home' %}"><button class="btn btn-class">Back</button></a>
+                                </div>
 
                         </div>
                         <div class=" ">
@@ -194,7 +197,7 @@
         </div>
     </div>
 
-    <a href="{% url 'logout' %}"><button>logout</button></a>
+    
     <script>
         function display() {
             alert("deleted");

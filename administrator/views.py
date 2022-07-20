@@ -1,11 +1,7 @@
 
-
-import email
-from itertools import product
 from django.shortcuts import render
 
 # Create your views here.
-from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
@@ -19,6 +15,7 @@ from . forms import add_product
 from . forms import edit_product
 from order.models import Order, OrderProduct
 from order.models import Payment
+from django.db.models import Q
 # Create your views here.
 
 # account = Accounts.objects.all()
@@ -168,11 +165,17 @@ def back(request):
     return render(request,'administrator/stock_table.html')
 
 def paymenthistory(request):
-    paid = Payment.objects.all()
-    product_id =request.GET.get('product_id')
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            paid =Payment.objects.order_by('payment_id').filter(Q(payment_id__icontains=keyword))
+        if not paid.exists():
+            messages.error(request,'no match found')
+            return redirect(request,'administrator/paymenthistory.html')
+    else:
+        paid = Payment.objects.all().order_by('payment_id')
     context ={
         'paid':paid,
-        'product_id':product_id,
     }
 
     return render(request,'administrator/paymenthistory.html',context)
