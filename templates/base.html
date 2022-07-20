@@ -133,7 +133,7 @@
           <span></span>
         </button>
         <a class="navbar-brand text-brand" href="{% url 'index' %}">
-           <img src="{% static 'img/homelogo.jpg' %}"style="width:18vh;height:12vh;align:left;">
+           <img src="{% static 'img/homelogo.jpg' %}"style="width:18vh;height:12vh;">
             MY<span class="color-b">BUDGETHOUSE</span></a>
   
         <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
@@ -158,20 +158,22 @@
           <i class="fas fa-shopping-cart"></i><span class="badge badge-pill badge-danger notify">{{ cart_count}}</span></a></p>
         </button>
         {% if user.is_authenticated %}
-        <button class="btn btn-success m-1" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}" type="button" style="color:#fff;"><i class="fa-solid fa-heart"></i> aria-hidden="true"></span></a></p>
+        <button class="btn btn-success m-1" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}" type="button" style="color:#fff;"><span
+              class="fas fa-heart" aria-hidden="true"></span></a></p>
         </button>
         {% else %}
         <button class="btn btn-b-n m-2 disabled "><i class="fa fa-heart"></i></button">
           {% endif %}
           <button class="btn btn-success navbar-toggle-box-collapse d-none d-md-block m-1" style="width:45px;height:45px;"><a href="#" type="button"
-              style="color:#fff;"><i class="fas fa-search"></i></a></p>
+              style="color:#fff;"><span class="fa fa-search" aria-hidden="true"></span></a></p>
           </button>
           {% if user.id is None %}
-          <button class="btn btn-success m-1"style="width:45px;height:45px;"><a href="{% url 'login' %}" type="button" style="color:#fff;"><i class="fa-solid fa-user"></i></a></p>
+          <button class="btn btn-success m-1"style="width:45px;height:45px;"><a href="{% url 'login' %}" type="button" style="color:#fff;"><span
+                class="fas fa-user" aria-hidden="true"></span></a></p>
           </button>
           {% else %}
           <button class="btn btn-success  m-1" style="width:45px;height:45px;"><a href="{% url 'userdashboard' %}" type="button" style="color:#fff;"><span
-            class="fa fa-user" aria-hidden="true"></span></a></p>
+            class="fas fa-user" aria-hidden="true"></span></a></p>
           </button>
           <div>
             <button class="btn btn-success m-1" type="button"><a href="{% url 'logout' %}" type="button"
