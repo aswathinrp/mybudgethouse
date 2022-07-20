@@ -38,21 +38,26 @@
           </thead>
           <tbody>
 
-            {% for item in ordered_products %}
             <tr>
-            
-              <td>{{item.product.product_name}}</td>
-              <td>{{item.product.max_area}}</td>
-              <td>{{item.product.bedrooms}}</td>
-              <td>{{item.product.bathrooms}}</td>
-              <td>{{item.product.floors}}</td>
-              <td>{{item.product.parking}}</td>
-              <td> ₹{{item.product.price}}</td>
-              <td><img src="{{item.product.images.path}}" style="height:200px;"> </td>
-              <td>{{item.product.category}}</td>
-              <td>{{item.product.created_date}}</td>
+              <td>{{ordered_products.product.product_name}}</td>
+              <td>{{ordered_products.product.max_area}}</td>
+              <td>{{ordered_products.product.bedrooms}}</td>
+              <td>{{ordered_products.product.bathrooms}}</td>
+              <td>{{ordered_products.product.floors}}</td>
+              <td>{{ordered_products.product.parking}}</td>
+              <td> ₹{{ordered_products.product.price}}</td>
+              <br>
+              <td>
+                <img src="{{ordered_products.product.images.url}}" style="height:200px;"> </td>
+              <td>
+                {% for i in images %}
+                <img src="{{i.image.url}}" style="height:200px;" alt="">
+                {% endfor %}
+              </td>
+              <td>{{ordered_products.product.category}}</td>
+              <td>{{ordered_products.product.created_date}}</td>
             </tr>
-            {% endfor %}
+
           </tbody>
         </table>
       </div>

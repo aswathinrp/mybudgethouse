@@ -1,8 +1,9 @@
 
+from itertools import product
 from django.views import View
 import razorpay
 import email
-from stocks.models import products  
+from stocks.models import ProductGallery, products  
 from order.models import Payment
 from email import message
 from re import U
@@ -307,9 +308,9 @@ def order_complete(request):
     try:
         order = Order.objects.get(order_number = order_number,is_ordered =True)
         ordered_products =OrderProduct.objects.filter(order_id = order.id)
-        
         template_path = 'accounts/pdfreport.html'
-        context = {'ordered_products':ordered_products}
+        context = {'ordered_products':ordered_products,
+                   }
         response = HttpResponse(content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="planreport.pdf"'
         template = get_template(template_path)

@@ -13,7 +13,7 @@ from .models import Order
 from django.views.decorators.csrf import csrf_exempt
 from cart.views import *
 import json
-from stocks.models import products
+from stocks.models import ProductGallery, products
 from io import BytesIO
 
 from django.http import HttpResponse
@@ -95,19 +95,24 @@ def placeorder(request, total=0, quantity=0):
         return redirect('checkout')
 
 
-def pdf(request):
-    
-    ordered_products = OrderProduct.objects.filter(user=request.user)
-    
+def pdf(request,order_id):
+    ordered_products = OrderProduct.objects.get(user=request.user,order__order_number=order_id)
     context = {
         'ordered_products':ordered_products,
+        'images':ProductGallery.objects.filter(product=ordered_products.product),
+        'order_id':order_id,
     }   
+   
+
     return render(request,'order/pdfbase.html',context)
 
-def pdf_report(request):
-    ordered_products = OrderProduct.objects.filter(user=request.user,)
+def pdf_report(request,order_id):
+    ordered_products = OrderProduct.objects.get(user=request.user,order__order_number=order_id)
     template_path = 'accounts/pdfreport.html'
-    context = {'ordered_products':ordered_products}
+    context = {
+        'ordered_products':ordered_products,
+        'images':ProductGallery.objects.filter(product=ordered_products.product)
+        }
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment;filename="planreport.pdf"'
     template = get_template(template_path)

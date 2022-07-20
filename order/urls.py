@@ -3,6 +3,6 @@ from . import views
 
 urlpatterns = [
    path('placeorder/',views.placeorder,name="placeorder"),
-   path('pdf/',views.pdf,name='pdf'),
-   path('pdf_report/',views.pdf_report,name='pdf_report')
+   path('pdf/<int:order_id>',views.pdf,name='pdf'),
+   path('pdf_report/<int:order_id>',views.pdf_report,name='pdf_report')
 ]

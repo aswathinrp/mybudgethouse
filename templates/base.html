@@ -122,72 +122,74 @@
   </div>
   <!--/ Form Search End /-->
 
-  <!--/ Nav Star /-->
-  <nav class="navbar navbar-default navbar-trans navbar-expand-md fixed-top height=40px">
-    <div class="container">
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
-        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <a class="navbar-brand text-brand" href="{% url 'index' %}"> <img src="{% static 'img/homelogo.jpg' %}"
-          alt="">MY<span class="color-b">BUDGETHOUSE</span></a>
-
-      <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'index' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'stocks' %}">Plans</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-         
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-          </li>
-        </ul>
-      </div>
-
-      <a class="btn btn-success" href="{% url 'cart' %}" type="button" style="color:#fff;width:45px;height:45px;">
-        <i class="fa fa-shopping-cart"></i><span class="badge badge-pill badge-danger notify">{{ cart_count}}</span></a></p>
-      </button>
-      {% if user.is_authenticated %}
-      <button class="btn btn-success m-1" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}" type="button" style="color:#fff;"><span
-            class="fa fa-heart" aria-hidden="true"></span></a></p>
-      </button>
-      {% else %}
-      <button class="btn btn-b-n m-2 disabled "><i class="fa fa-heart"></i></button">
-        {% endif %}
-        <button class="btn btn-success navbar-toggle-box-collapse d-none d-md-block m-1" style="width:45px;height:45px;"><a href="#" type="button"
-            style="color:#fff;"><span class="fa fa-search" aria-hidden="true"></span></a></p>
+ 
+    <!--/ Nav Star /-->
+    <nav class="navbar navbar-default navbar-trans navbar-expand-md fixed-top height=40px">
+      <div class="container">
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+          aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
-        {% if user.id is None %}
-        <button class="btn btn-success m-1"style="width:45px;height:45px;"><a href="{% url 'login' %}" type="button" style="color:#fff;"><span
-              class="fa fa-user" aria-hidden="true"></span></a></p>
+        <a class="navbar-brand text-brand" href="{% url 'index' %}">
+           <img src="{% static 'img/homelogo.jpg' %}"style="width:18vh;height:12vh;align:left;">
+            MY<span class="color-b">BUDGETHOUSE</span></a>
+  
+        <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'stocks' %}">Plans</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+          </ul>
+        </div>
+  
+        <a class="btn btn-success" href="{% url 'cart' %}" type="button" style="color:#fff;width:45px;height:45px;">
+          <i class="fa fa-shopping-cart"></i><span class="badge badge-pill badge-danger notify">{{ cart_count}}</span></a></p>
+        </button>
+        {% if user.is_authenticated %}
+        <button class="btn btn-success m-1" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}" type="button" style="color:#fff;"><span
+              class="fa fa-heart" aria-hidden="true"></span></a></p>
         </button>
         {% else %}
-        <button class="btn btn-success  m-1" style="width:45px;height:45px;"><a href="{% url 'userdashboard' %}" type="button" style="color:#fff;"><span
-          class="fa fa-user" aria-hidden="true"></span></a></p>
-        </button>
-        <div>
-          <button class="btn btn-success m-1" type="button"><a href="{% url 'logout' %}" type="button"
-              style="color:#fff; width:50px;height:10px;">Logout</a>
+        <button class="btn btn-b-n m-2 disabled "><i class="fa fa-heart"></i></button">
+          {% endif %}
+          <button class="btn btn-success navbar-toggle-box-collapse d-none d-md-block m-1" style="width:45px;height:45px;"><a href="#" type="button"
+              style="color:#fff;"><span class="fa fa-search" aria-hidden="true"></span></a></p>
           </button>
-        </div> 
-        <div>
-          <p class="text mt-3">{{user.first_name}}</p>
-        </div>
-    </div>
-
-
-    {% endif %}
-
-   
-  </nav>
+          {% if user.id is None %}
+          <button class="btn btn-success m-1"style="width:45px;height:45px;"><a href="{% url 'login' %}" type="button" style="color:#fff;"><span
+                class="fa fa-user" aria-hidden="true"></span></a></p>
+          </button>
+          {% else %}
+          <button class="btn btn-success  m-1" style="width:45px;height:45px;"><a href="{% url 'userdashboard' %}" type="button" style="color:#fff;"><span
+            class="fa fa-user" aria-hidden="true"></span></a></p>
+          </button>
+          <div>
+            <button class="btn btn-success m-1" type="button"><a href="{% url 'logout' %}" type="button"
+                style="color:#fff; width:50px;height:10px;">Logout</a>
+            </button>
+          </div> 
+          <div>
+            <p class="text mt-3">{{user.first_name}}</p>
+          </div>
+      </div>
+  
+  
+      {% endif %}
+  
+     
+    </nav>
   {% block content %}
 
 
