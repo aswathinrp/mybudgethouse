@@ -41,18 +41,18 @@ def stocks(request, category_slug=None):
 
     return render(request, 'stocks/plans.html', context)
 
-
+@login_required(login_url = 'login')
 def product_detail(request, category_slug, product_slug):
     try:
         single_product = products.objects.get(
-            category__slug=category_slug, slug=product_slug)
+        category__slug=category_slug, slug=product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request),product=single_product).exists()
         print(in_cart)
         print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         
     except Exception as e:
         raise e
-    
+     
     product_gallery = ProductGallery.objects.filter(product_id=single_product.id)
     context = {
         'single_product': single_product,

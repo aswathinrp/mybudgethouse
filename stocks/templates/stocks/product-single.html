@@ -42,12 +42,12 @@
                 <center><img style="max-width: 100%;" src="{{single_product.images.url}}" alt=""onContextMenu="return false;"></center>
               </div>
             </article>
-            <ul class="thumb">
+            <ul class="thumb"> 
               <li>
-                <a href="{{single_product.images.url}}" target="mainImage"><img src="{{single_product.images.url}}"
-                    alt="Product Image" onContextMenu="return false;"></a>
+                <a class="thumbnail" href="{{single_product.images.url}}" target="mainImage"><img src="{{single_product.images.url}}"
+                   onContextMenu="return false" alt = "Generic placeholder thumbnail"></a>
                 {% for i in product_gallery %}
-                <a href="{{i.image.url}}" target="mainImage"><img src="{{i.image.url}}" alt="Product Image" onContextMenu="return false;"></a>
+                <a class="thumbnail" href="{{i.image.url}}" target="mainImage"><img src="{{i.image.url}}" alt = "Generic placeholder thumbnail" onContextMenu="return false;"></a>
                 {% endfor %}
               </li>
             </ul>
@@ -94,11 +94,11 @@
 
                       <div class="button d-flex">
                         {% if in_cart %}
-                        <a class="btn btn-success" href="#">ADDED TO CART<i class="fa fa-check"></i></a>&nbsp
-                        <a class="btn btn-success" href="{% url 'cart' %}">VIEW CART<i class="fa fa-eye"></i></a>&nbsp
+                          <a class="btn btn-success" href="#">ADDED TO CART<i class="fas fa-check"></i></a>&nbsp
+                          <a class="btn btn-success" href="{% url 'cart' %}">VIEW CART<i class="fa fa-eye"></i></a>&nbsp
                         {% else %}
-                        <a class="btn btn-success" href="{% url 'add_cart' single_product.id %}">ADD TO CART <i
-                            class="fa fa-shopping-cart"></i></a>&nbsp;
+                          <a class="btn btn-success" href="{% url 'add_cart' single_product.id %}">ADD TO CART <i
+                              class="fa fa-shopping-cart"></i></a>&nbsp;
                         {% endif %}
                         <a href="{% url 'wishlist_add' single_product.id %}"><button class="btn btn-success "
                             type="button">WISHLIST</button></a>
