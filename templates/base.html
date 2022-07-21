@@ -65,7 +65,7 @@
     <div class="title-box-d">
       <h3 class="title-d">Search Property</h3>
     </div>
-    <span class="close-box-collapse right-boxed ion-ios-close"></span>
+    <span class="close-box-collapse right-boxed fa fa-close"></span>
     <div class="box-collapse-wrap form">
       <form class="search" action="{% url 'search' %}" method="POST" name="keyword">
         {% csrf_token %}
@@ -108,8 +108,8 @@
             <div class="form-group">
               <label for="bathrooms">Parking</label>
               <select class="form-control form-control-lg form-control-a" name="parking">
-                <option>Available</option>
-                <option>Not Available</option>
+                <option >Available</option>
+                <option >Not Available</option>
               </select>
             </div>
           </div>
@@ -157,7 +157,14 @@
         <a class="btn btn-success icon" href="{% url 'cart' %}" type="button"
           style="color:#fff;width:45px;height:45px;">
           <i class="fa-solid fa-cart-shopping"><span class="badge badge-pill badge-danger notify">
-            {{cart_count}}</span></i></a>
+              {{cart_count}}</span></i>
+            </a>
+
+              <button class="btn btn-success icon navbar-toggle-box-collapse m-1"
+              style="width:45px;height:45px;"><a href="#" type="button" style="color:#fff;"><span class="fa fa-search"
+                  aria-hidden="true"></span></a>
+            </button>
+
         {% if user.is_authenticated %}
         <button class="btn btn-success m-1 icon" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}"
             type="button" style="color:#fff;"><span class="fas fa-heart" aria-hidden="true"></span></a></p>
@@ -182,16 +189,14 @@
             <p class="text mt-3">{{user.first_name}}</p>
           </div>
           {% endif %}
+         
           <div>
-          <button class="btn btn-success icon navbar-toggle-box-collapse d-none d-md-block m-1"
-          style="width:45px;height:45px;"><a href="#" type="button" style="color:#fff;"><span class="fa fa-search"
-              aria-hidden="true"></span></a></p>
-        </button>
-      </div>
+            
+          </div>
       </div>
 
 
-     
+
 
     </div>
 

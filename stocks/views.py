@@ -99,10 +99,15 @@ def search(request):
   
     if request.method=='POST':
         bedrooms = request.POST.get('bedrooms')
+        print(bedrooms)
         bathrooms = request.POST.get('bathrooms')
+        print(bathrooms)
         floors = request.POST.get('floors')
-        parking = request.POST.get('parking')
+        print(floors)
+        parking = request.POST.get('parking').lower()
+        print(parking)
         productsearchobj=products.objects.filter(Q(bedrooms=bedrooms),Q(bathrooms=bathrooms),Q(floors=floors),Q(parking=parking))
+        print('aaaaaaaaaaaaaaaa',productsearchobj)
         return render(request,'stocks/plans.html',{'products':productsearchobj})
     else:
         productobj=products.objects.all()
