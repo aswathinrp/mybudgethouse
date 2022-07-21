@@ -20,7 +20,6 @@
       <div class="col-md-8">
         <table class="table table-striped">
           <thead>
-
             <tr>
               <th style="width:100px;">product_name</th>
               <th style="width:100px;">max_area</th>
@@ -32,12 +31,9 @@
               <th style="width:140px;">images</th>
               <th style="width:80px;">category</th>
               <th style="width:140px;">created_date</th>
-             
-
             </tr>
           </thead>
           <tbody>
-
             <tr>
               <td>{{ordered_products.product.product_name}}</td>
               <td>{{ordered_products.product.max_area}}</td>
@@ -46,24 +42,19 @@
               <td>{{ordered_products.product.floors}}</td>
               <td>{{ordered_products.product.parking}}</td>
               <td> ₹{{ordered_products.product.price}}</td>
-              <br>
-              <td>
-                <img src="{{ordered_products.product.images.url}}" style="height:200px;"> </td>
-              <td>
-                {% for i in images %}
-                <img src="{{i.image.url}}" style="height:200px;" alt="">
-                {% endfor %}
-              </td>
               <td>{{ordered_products.product.category}}</td>
               <td>{{ordered_products.product.created_date}}</td>
             </tr>
-
           </tbody>
         </table>
+        <img src="{{ordered_products.product.images.url}}" style="width: 100vw;"> 
+        <br>
+        {% for i in images %}
+        <br>
+        <img src="{{i.image.url}}" style="height:200px" alt="">
+        {% endfor %}
       </div>
     </div>
-
-   
   </div>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

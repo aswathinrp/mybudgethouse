@@ -10,7 +10,7 @@ urlpatterns = [
                 path('edit/<int:id>',views.edit,name='edit'),
                
                 path('adminlogin/',views.adminlogin,name='adminlogin'),
-                path('home/',views.home,name='home'),
+                # path('home/',views.home,name='home'),
                 path('dashboard/',views.dashboard,name='dashboard'),
                 path('clients/',views.clients,name='clients'),
                 path('table/',views.stock_table,name='stock_table'),
@@ -19,5 +19,6 @@ urlpatterns = [
                 path('orderhistory/',views.orderhistory,name='orderhistory'),
                 path('block_user/<int:id>',views.block_user,name='block_user'),
                 path('paymenthistory',views.paymenthistory,name='paymenthistory'),
+                path('AdminHome',views.AdminHome,name='AdminHome'),
                
               ]

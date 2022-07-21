@@ -16,6 +16,7 @@ from . forms import edit_product
 from order.models import Order, OrderProduct
 from order.models import Payment
 from django.db.models import Q
+from django.http import HttpResponse
 # Create your views here.
 
 # account = Accounts.objects.all()
@@ -30,7 +31,7 @@ def adminlogin(request):
 
         if user is not None and user.is_admin:
             auth.login(request, user)
-            return redirect(home)
+            return redirect(AdminHome)
         else:
             messages.error(request, 'invalid entry !')
             return redirect(adminlogin)
@@ -45,9 +46,9 @@ def logout(request):
     return redirect(adminlogin)
 
 
-def home(request):
+# def home(request):
 
-    return render(request, 'administrator/home.html')
+#     return render(request, 'administrator/home.html')
 
 
 def dashboard(request):
@@ -71,6 +72,7 @@ def clients(request):
     context = {'Accounts': account}
 
     return render(request, 'administrator/clients.html', context)
+   
 
 
 def stock_table(request):
@@ -202,3 +204,57 @@ def orderhistory(request):
     }
     
     return render(request,'administrator/orderhistory.html',context)
+
+def AdminHome(request):
+    account=Accounts.objects.filter( is_superadmin=False).count()
+    payment=OrderProduct.objects.filter(ordered=True).count()    
+    number=OrderProduct.objects.filter(ordered=True)
+    transations=Payment.objects.all()    
+    user=request.user
+    sum=0
+    
+    # products=Product.objects.get(slug='nivia-supreme')
+    for x in number:
+        sum+=x.product_price
+
+    pro_count=products.objects.all().count()
+    
+    context={
+        'account':account,
+        'payment':payment,
+        
+        'sum':sum,
+        'pro_count':pro_count,
+        'transations':transations,
+        'user':user,
+    }
+    return render(request,'administrator/AdminHome.html',context)
+def invoice(request):
+    order_number = request.GET.get('order_number')
+    transID = request.GET.get('payment_id')
+   
+    order = Order.objects.get(order_number = order_number,is_ordered =True)
+    ordered_products =OrderProduct.objects.filter(order_id = order.id)
+   
+    context = {'ordered_products':ordered_products,
+                }
+    average=0
+    subtotal=0
+    for i in ordered_products:
+        subtotal += i.product_price
+        
+        
+    payment = Payment.objects.get(payment_id=transID)
+    context = {
+        'order': order,
+        'ordered_products':ordered_products,
+        'order_number':order.order_number,
+        'transID':payment.payment_id,
+        'payment':payment,
+        'subtotal':subtotal,
+       
+    }
+    return render(request,'administrator/AdminHome.html',context)
+
+
+    

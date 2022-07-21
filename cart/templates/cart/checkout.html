@@ -15,13 +15,16 @@
 </div>
 <!-- Page Header End -->
 
-<div class="container d-flex ">
+<div class="container">  
+  <div class="row"> 
+
+  
   <div class="col-lg-8">
     <div class="row">
-      <form action="{% url 'placeorder' %}" method="POST">
+      <form action="{% url 'placeorder' %}" method="POST" style="max-width:100%">
         {% csrf_token %}
-        <div class="col-lg-8">
-          <table class="table table-bordered text-center my-5" style="width: 50vw;">
+        <div class="table-responsive   ">
+          <table class="table table-bordered text-center my-5" >
             <thead class="bg-success text-light">
               <tr>
                 <th>Products</th>
@@ -71,6 +74,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 

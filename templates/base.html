@@ -30,23 +30,21 @@
 
   <!-- Main Stylesheet File -->
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
-      $(document).ready(function()
-      {
-          var ordertotal;
-          var total_revenue=0;
-          $('td:nth-child(4)').each(function()
-          {
-            ordertotal= $(this).html();
-            total_revenue += parseInt(ordertotal)
-            $('total_revenue').text(total_revenue) 
-          });
+    $(document).ready(function () {
+      var ordertotal;
+      var total_revenue = 0;
+      $('td:nth-child(4)').each(function () {
+        ordertotal = $(this).html();
+        total_revenue += parseInt(ordertotal)
+        $('total_revenue').text(total_revenue)
       });
+    });
 
 
-    </script>
+  </script>
 
   <script type="text/javascript">
     // jquery ready start
@@ -88,7 +86,7 @@
             <div class="form-group">
               <label for="city">Bathrooms</label>
               <select class="form-control form-control-lg form-control-a" name="bathrooms">
-                
+
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -100,7 +98,7 @@
             <div class="form-group">
               <label for="garages">Floors</label>
               <select class="form-control form-control-lg form-control-a" name="floors">
-               
+
                 <option>1</option>
                 <option>2</option>
               </select>
@@ -115,7 +113,7 @@
               </select>
             </div>
           </div>
-          <hr/>
+          <hr />
           <div class="col-md-12">
             <button type="submit" class="btn btn-success" value="search/">Search Property</button>
           </div>
@@ -125,221 +123,228 @@
   </div>
   <!--/ Form Search End /-->
 
- 
-    <!--/ Nav Star /-->
-    <nav class="navbar navbar-default navbar-trans navbar-expand-md fixed-top height=40px">
-      <div class="container">
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
-          aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <a class="navbar-brand text-brand active" href="{% url 'index' %}">
-           <img src="{% static 'img/homelogo.jpg' %}"style="width:15vh;height:10vh;">
-            MY<span class="color-b">BUDGETHOUSE</span></a>
-  
-        <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'index' %}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'stocks' %}">Plans</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">About</a>
-            </li>
-           
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-            </li>
-          </ul>
-        </div>
-  
-        <a class="btn btn-success icon" href="{% url 'cart' %}" type="button" style="color:#fff;width:45px;height:45px;">
-          <i class="fa-solid fa-cart-shopping"><span class="badge badge-pill badge-danger notify">{{ cart_count}}</span></i></a></p>
-        </button>
+
+  <!--/ Nav Star /-->
+  <nav class="navbar navbar-default navbar-trans navbar-expand-md fixed-top height=40px">
+    <div class="container">
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="navbar-brand text-brand active" href="{% url 'index' %}">
+        <img src="{% static 'img/homelogo.jpg' %}" style="width:15vh;height:10vh;">
+        MY<span class="color-b">BUDGETHOUSE</span></a>
+
+      <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'stocks' %}">Plans</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+          </li>
+        </ul>
+
+        <a class="btn btn-success icon" href="{% url 'cart' %}" type="button"
+          style="color:#fff;width:45px;height:45px;">
+          <i class="fa-solid fa-cart-shopping"><span class="badge badge-pill badge-danger notify">
+            {{cart_count}}</span></i></a>
         {% if user.is_authenticated %}
-        <button class="btn btn-success m-1 icon" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}" type="button" style="color:#fff;"><span
-              class="fas fa-heart" aria-hidden="true"></span></a></p>
+        <button class="btn btn-success m-1 icon" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}"
+            type="button" style="color:#fff;"><span class="fas fa-heart" aria-hidden="true"></span></a></p>
         </button>
         {% else %}
         <button class="btn btn-b-n m-2 disabled icon "><i class="fa fa-heart"></i></button">
           {% endif %}
-          <button class="btn btn-success icon navbar-toggle-box-collapse d-none d-md-block m-1" style="width:45px;height:45px;"><a href="#" type="button"
-              style="color:#fff;"><span class="fa fa-search" aria-hidden="true"></span></a></p>
-          </button>
           {% if user.id is None %}
-          <button class="btn btn-success m-1 icon"style="width:45px;height:45px;"><a href="{% url 'login' %}" type="button" style="color:#fff;"><span
-                class="fas fa-user" aria-hidden="true"></span></a></p>
+          <button class="btn btn-success m-1 icon" style="width:45px;height:45px;"><a href="{% url 'login' %}"
+              type="button" style="color:#fff;"><span class="fas fa-user" aria-hidden="true"></span></a></p>
           </button>
           {% else %}
-          <button class="btn btn-success  m-1" style="width:45px;height:45px;"><a href="{% url 'userdashboard' %}" type="button" style="color:#fff;"><span
-            class="fas fa-user" aria-hidden="true"></span></a></p>
+          <button class="btn btn-success  m-1" style="width:45px;height:45px;"><a href="{% url 'userdashboard' %}"
+              type="button" style="color:#fff;"><span class="fas fa-user" aria-hidden="true"></span></a></p>
           </button>
           <div>
             <button class="btn btn-success m-1" type="button"><a href="{% url 'logout' %}" type="button"
                 style="color:#fff; width:50px;height:10px;">Logout</a>
             </button>
-          </div> 
+          </div>
           <div>
             <p class="text mt-3">{{user.first_name}}</p>
           </div>
+          {% endif %}
       </div>
-  
-  
-      {% endif %}
-  
-     
-    </nav>
+
+
+      <button class="btn btn-success icon navbar-toggle-box-collapse d-none d-md-block m-1"
+        style="width:45px;height:45px;"><a href="#" type="button" style="color:#fff;"><span class="fa fa-search"
+            aria-hidden="true"></span></a></p>
+      </button>
+
+
+    </div>
+
+
+
+
+
+  </nav>
   {% block content %}
 
 
   {% endblock %}
-<div class="container">
-  <section class="section-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-4">
-          <div class="widget-a">
-            <div class="w-header-a">
-              <h3 class="w-title-a text-brand">MYBudgetHouse</h3>
-            </div>
-            <div class="w-body-a">
-              <p class="w-text-a color-text-a">
-
-              </p>
-            </div>
-            <div class="w-footer-a">
-              <ul class="list-unstyled">
-                <li class="color-a">
-                  <span class="color-text-a">Email</span> aswathinrp@gmail.com
-                </li>
-                <li class="color-a">
-                  <span class="color-text-a">Phone</span> +91 8089319891
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-4 section-md-t3">
-          <div class="widget-a">
-            <div class="w-header-a">
-              <h3 class="w-title-a text-brand">The Home</h3>
-            </div>
-            <div class="w-body-a">
+  <div class="container">
+    <section class="section-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <div class="widget-a">
+              <div class="w-header-a">
+                <h3 class="w-title-a text-brand">MYBudgetHouse</h3>
+              </div>
               <div class="w-body-a">
-                <ul class="list-unstyled">
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Site Map</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Legal</a>
-                  </li>
+                <p class="w-text-a color-text-a">
 
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Privacy Policy</a>
+                </p>
+              </div>
+              <div class="w-footer-a">
+                <ul class="list-unstyled">
+                  <li class="color-a">
+                    <span class="color-text-a">Email</span> aswathinrp@gmail.com
+                  </li>
+                  <li class="color-a">
+                    <span class="color-text-a">Phone</span> +91 8089319891
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-12 col-md-4 section-md-t3">
-          <div class="widget-a">
-            <div class="w-header-a">
-              <h3 class="w-title-a text-brand">what we do</h3>
-            </div>
-            <div class="w-body-a">
+          <div class="col-sm-12 col-md-4 section-md-t3">
+            <div class="widget-a">
+              <div class="w-header-a">
+                <h3 class="w-title-a text-brand">The Home</h3>
+              </div>
               <div class="w-body-a">
-                <ul class="list-unstyled">
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Site plan</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Custom plan</a>
-                  </li>
+                <div class="w-body-a">
+                  <ul class="list-unstyled">
+                    <li class="item-list-a">
+                      <i class="fa fa-angle-right"></i> <a href="#">Site Map</a>
+                    </li>
+                    <li class="item-list-a">
+                      <i class="fa fa-angle-right"></i> <a href="#">Legal</a>
+                    </li>
 
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Construction</a>
-                  </li>
-                </ul>
+                    <li class="item-list-a">
+                      <i class="fa fa-angle-right"></i> <a href="#">Privacy Policy</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4 section-md-t3">
+            <div class="widget-a">
+              <div class="w-header-a">
+                <h3 class="w-title-a text-brand">what we do</h3>
+              </div>
+              <div class="w-body-a">
+                <div class="w-body-a">
+                  <ul class="list-unstyled">
+                    <li class="item-list-a">
+                      <i class="fa fa-angle-right"></i> <a href="#">Site plan</a>
+                    </li>
+                    <li class="item-list-a">
+                      <i class="fa fa-angle-right"></i> <a href="#">Custom plan</a>
+                    </li>
+
+                    <li class="item-list-a">
+                      <i class="fa fa-angle-right"></i> <a href="#">Construction</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-  </section>
-</div>
-<div class="container"> 
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <nav class="nav-footer">
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="index.html">Home</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="about.html">About</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Property</a>
-              </li>
+    </section>
+  </div>
+  <div class="container">
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <nav class="nav-footer">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a href="index.html">Home</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="about.html">About</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">Property</a>
+                </li>
 
-              <li class="list-inline-item">
-                <a href="contact.html">Contact</a>
-              </li>
-            </ul>
-          </nav>
-          <div class="socials-a">
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-instagram" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                </a>
-              </li>
-             
-            </ul>
-          </div>
-          <div class="copyright-footer">
-            <p class="copyright color-text-a">
-              &copy; Copyright
-              <span class="color-a">MYBudgetHouse</span> All Rights Reserved.
-            </p>
-          </div>
-          <div class="credits">
-            <!--
+                <li class="list-inline-item">
+                  <a href="contact.html">Contact</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="socials-a">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+            <div class="copyright-footer">
+              <p class="copyright color-text-a">
+                &copy; Copyright
+                <span class="color-a">MYBudgetHouse</span> All Rights Reserved.
+              </p>
+            </div>
+            <div class="credits">
+              <!--
               All the links in the footer should remain intact.
               You can delete the links only if you purchased the pro version.
               Licensing information: https://bootstrapmade.com/license/
               Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
             -->
-            <p>Designed by aswathinrp</p>
+              <p>Designed by aswathinrp</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
   </div>
   <!--/ Footer End /-->
 

@@ -34,7 +34,7 @@
           <img src="{% static 'img/homeee.jpg' %}" alt="" style="height:65vh"
           class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
         </div>
-        <div class="col-lg-6 bg bg-success">
+        <div class="col-lg-6 bg bg- border border-success"> 
           <div class="card-body py-5 px-md-3">
              <!-- {% include 'alerts.html' %} -->
             <form action="{% url 'login' %}" method="POST">
@@ -52,8 +52,8 @@
               </div>
   
               <!-- 2 column grid layout for inline styling -->
-              <div class="row mb-5 bg bg-success">
-                <div class="col d-flex justify-content-center">
+              <div class=" mb-5 bg bg-"> 
+                <div class="  justify-content-center">
                   <!-- Checkbox -->
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
@@ -61,11 +61,11 @@
                   </div>
                 </div>
   
-                <div class="col">
+                <div class="">
                   <!-- Simple link -->
                   <a href="{% url 'forgotpassword' %}">Forgot password?</a>
                 </div>
-                <div class="col">
+                <div class="">
                   <!-- Simple link -->
                   <a href="{% url 'register' %}">New to here? Register Now</a>
                 </div>
