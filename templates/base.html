@@ -157,21 +157,21 @@
           </ul>
         </div>
   
-        <a class="btn btn-success" href="{% url 'cart' %}" type="button" style="color:#fff;width:45px;height:45px;">
+        <a class="btn btn-success icon" href="{% url 'cart' %}" type="button" style="color:#fff;width:45px;height:45px;">
           <i class="fa-solid fa-cart-shopping"><span class="badge badge-pill badge-danger notify">{{ cart_count}}</span></i></a></p>
         </button>
         {% if user.is_authenticated %}
-        <button class="btn btn-success m-1" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}" type="button" style="color:#fff;"><span
+        <button class="btn btn-success m-1 icon" style="width:45px;height:45px;"><a href="{% url 'wishlist' %}" type="button" style="color:#fff;"><span
               class="fas fa-heart" aria-hidden="true"></span></a></p>
         </button>
         {% else %}
-        <button class="btn btn-b-n m-2 disabled "><i class="fa fa-heart"></i></button">
+        <button class="btn btn-b-n m-2 disabled icon "><i class="fa fa-heart"></i></button">
           {% endif %}
-          <button class="btn btn-success navbar-toggle-box-collapse d-none d-md-block m-1" style="width:45px;height:45px;"><a href="#" type="button"
+          <button class="btn btn-success icon navbar-toggle-box-collapse d-none d-md-block m-1" style="width:45px;height:45px;"><a href="#" type="button"
               style="color:#fff;"><span class="fa fa-search" aria-hidden="true"></span></a></p>
           </button>
           {% if user.id is None %}
-          <button class="btn btn-success m-1"style="width:45px;height:45px;"><a href="{% url 'login' %}" type="button" style="color:#fff;"><span
+          <button class="btn btn-success m-1 icon"style="width:45px;height:45px;"><a href="{% url 'login' %}" type="button" style="color:#fff;"><span
                 class="fas fa-user" aria-hidden="true"></span></a></p>
           </button>
           {% else %}

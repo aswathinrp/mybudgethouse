@@ -131,18 +131,8 @@
                     </div>
                     <div class=" ">
                        
-                        
-                        <!-- <div class="search-box flex-grow-1  ">
-                            <form class="d-flex flex"  action="{% url 'categorylist' %}" method="get">
-                                <input type="search" name="key" class="form-control  " placeholder="Search&hellip;">
-                                <button type="submit" class="mx-2 btn btn-success">Search</button>
-                            </form>
-
-                        </div> -->
-                        <!-- <div class=" ">
-                            <a class="my-3 btn btn-success add-new" href="{% url 'add'  %}" style="color:white"><i
-                                    class="fa fa-plus"></i> Add New</a>
-                        </div> -->
+                        <a href="{% url 'home' %}"><button class="btn btn-success ">Back</button></a>
+   
 
                     </div>
                 </div>
@@ -151,7 +141,7 @@
                     <thead class="title"style="background:#083312;color:white;font-size:12px;">
                         <tr>
                             <th style="width:180px;"> category_name</th>
-                            <th style="width:180px;"> product_name</th>
+                            <!-- <th style="width:180px;"> product_name</th> -->
                             <th >Delete</th>
                             
 
@@ -181,7 +171,7 @@
             </div>
         </div>
     </div>
-    <a href="{% url 'logout' %}"><button class="btn btn-success ">logout</button></a>
+    
    
     <script>
         function display() {

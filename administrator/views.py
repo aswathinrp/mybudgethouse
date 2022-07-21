@@ -187,6 +187,9 @@ def categorylist(request):
         'product':product,
     }
     return render(request,'administrator/categorylist.html',context)
+
+
+
 def orderhistory(request):
     orders = Order.objects.all()
     # user=request.user,order_number=).order_by('-created_at')

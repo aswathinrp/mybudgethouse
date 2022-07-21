@@ -19,4 +19,5 @@ urlpatterns = [
                 path('orderhistory/',views.orderhistory,name='orderhistory'),
                 path('block_user/<int:id>',views.block_user,name='block_user'),
                 path('paymenthistory',views.paymenthistory,name='paymenthistory'),
+               
               ]
