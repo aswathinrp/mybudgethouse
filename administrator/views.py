@@ -68,19 +68,39 @@ def dashboard(request):
 
 
 def clients(request):
-    account = Accounts.objects.all()
-    context = {'Accounts': account}
-
-    return render(request, 'administrator/clients.html', context)
+    
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            clients = Accounts.objects.filter(Q(first_name__icontains=keyword)|Q(last_name__icontains=keyword))
+        if not clients.exists():
+            messages.error(request,'Match not found')
+            return redirect(request,'administrator/clients.html')
+    else:
+        clients= Accounts.objects.filter(is_superadmin = False).order_by('-id')
+    context = {
+            'Accounts':clients,
+    }  
+    return render(request,'administrator/clients.html',context) 
    
 
 
 def stock_table(request):
-    search_key = request.GET.get('key') if request.GET.get('key') != None else ''
-    # if 'product_list' in request.session:
-    product_list = products.objects.filter(product_name__istartswith = search_key)
-    return render(request, 'administrator/stock_table.html', {'products': product_list})
     
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            product_list = products.objects.filter(Q(product_name__icontains=keyword))
+        if not product_list.exists():
+            messages.error(request,'Match not found')
+            return redirect(request,'administrator/stock_table.html')
+    else:
+         product_list= products.objects.all()
+    context = {
+            'products': product_list,
+    }  
+    return render(request,'administrator/stock_table.html',context) 
+   
 
    
 
@@ -96,6 +116,7 @@ def add(request):
             product = products.objects.get(product_name=product_name)
             product.slug = slug
             product.save()
+            # messages.info("product saved successfully")
             print("product created")
 
     form = add_product()
@@ -194,9 +215,6 @@ def categorylist(request):
 
 def orderhistory(request):
     orders = Order.objects.all()
-    # user=request.user,order_number=).order_by('-created_at')
-   
-    
     product_id =request.GET.get('product_id')
     context ={
         'orders':orders,
@@ -204,6 +222,8 @@ def orderhistory(request):
     }
     
     return render(request,'administrator/orderhistory.html',context)
+     
+       
 
 def AdminHome(request):
     account=Accounts.objects.filter( is_superadmin=False).count()
@@ -229,32 +249,7 @@ def AdminHome(request):
         'user':user,
     }
     return render(request,'administrator/AdminHome.html',context)
-def invoice(request):
-    order_number = request.GET.get('order_number')
-    transID = request.GET.get('payment_id')
-   
-    order = Order.objects.get(order_number = order_number,is_ordered =True)
-    ordered_products =OrderProduct.objects.filter(order_id = order.id)
-   
-    context = {'ordered_products':ordered_products,
-                }
-    average=0
-    subtotal=0
-    for i in ordered_products:
-        subtotal += i.product_price
-        
-        
-    payment = Payment.objects.get(payment_id=transID)
-    context = {
-        'order': order,
-        'ordered_products':ordered_products,
-        'order_number':order.order_number,
-        'transID':payment.payment_id,
-        'payment':payment,
-        'subtotal':subtotal,
-       
-    }
-    return render(request,'administrator/AdminHome.html',context)
+
 
 
     

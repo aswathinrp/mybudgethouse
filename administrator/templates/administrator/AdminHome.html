@@ -18,6 +18,7 @@
                   </div>
                 </div>
                 <span class="profile-text font-weight-medium d-none d-md-block">English</span>
+               
               </a>
               <!-- <div class="" aria-labelledby="LanguageDropdown">
                 <a class="dropdown-item">
@@ -33,7 +34,9 @@
               <input type="search" class="form-control" placeholder="Search Here">
             </div>
           </form> -->
-          <ul class="navbar-nav ml-auto">
+          <div class="home">
+            <span class = "home"><a href="{% url 'AdminHome'%}">Home</a></span>
+            </div>
             
             
       </nav>
@@ -44,10 +47,7 @@
           <ul class="nav">
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
-                <div class="profile-image">
-                  <img class="img-xs rounded-circle" src="{% static 'adminpanel/assets/images/faces/face8.jpg' %}" alt="profile image">
-                  <div class="dot-indicator bg-success"></div>
-                </div>
+                
                 <div class="text-wrapper">
                   <p class="profile-name">Aswathi</p>
                   <p class="designation">Premium user</p>

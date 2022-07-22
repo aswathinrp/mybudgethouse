@@ -20,5 +20,6 @@ urlpatterns = [
                 path('block_user/<int:id>',views.block_user,name='block_user'),
                 path('paymenthistory',views.paymenthistory,name='paymenthistory'),
                 path('AdminHome',views.AdminHome,name='AdminHome'),
+                path('back',views.back,name='back'),
                
               ]
