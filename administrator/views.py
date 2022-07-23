@@ -51,11 +51,11 @@ def logout(request):
 #     return render(request, 'administrator/home.html')
 
 
-def dashboard(request):
-    search_key = request.GET.get('key') if request.GET.get('key') != None else ''
-    # if 'username' in request.session:
-    user_list = Accounts.objects.filter(username__istartswith = search_key)
-    return render(request, 'administrator/dashboard.html', {'Accounts': user_list})
+# def dashboard(request):
+#     search_key = request.GET.get('key') if request.GET.get('key') != None else ''
+#     # if 'username' in request.session:
+#     user_list = Accounts.objects.filter(username__istartswith = search_key)
+#     return render(request, 'administrator/dashboard.html', {'Accounts': user_list})
 
     # else:
 

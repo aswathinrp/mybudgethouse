@@ -5,9 +5,9 @@
 {% block content %}
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar default-layout w-100 col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 
-        <div class="navbar-menu-wrapper d-flex align-items-center">
+        <div class="navbar-menu-wrapper w-100 d-flex align-items-center">
             <ul class="navbar-nav">
                 <li class="nav-item font-weight-semibold d-none d-lg-block">Help : +918089319891</li>
                 <li class="nav-item dropdown language-dropdown">
@@ -42,12 +42,7 @@
                     </a>
                 </li>
                 <li class="nav-item nav-category">Main Menu</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'dashboard' %}">
-                        <i class="menu-icon typcn typcn-document-text"></i>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="" href="{% url 'clients' %}">
                         <i class="menu-icon typcn typcn-document-text"></i>

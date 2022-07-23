@@ -11,7 +11,7 @@ urlpatterns = [
                
                 path('adminlogin/',views.adminlogin,name='adminlogin'),
                 # path('home/',views.home,name='home'),
-                path('dashboard/',views.dashboard,name='dashboard'),
+                # path('dashboard/',views.dashboard,name='dashboard'),
                 path('clients/',views.clients,name='clients'),
                 path('table/',views.stock_table,name='stock_table'),
                 path('orderdetail/<int:order_id>',views.orderdetail,name='orderdetail'),
